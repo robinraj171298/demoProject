@@ -10,3 +10,21 @@
     color: #808080;
 }
 
+.workspaceUrlStyle {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    background-color: #E6E6FA;
+    width: 162px;
+}
+
+.workspaceUrlText{
+    width: 100%;
+    margin: 16px;
+    margin-bottom: 17px;
+    display: flex;
+    align-items: center;
+    color: #A9A9A9;
+    font-size: 17px;
+}
+

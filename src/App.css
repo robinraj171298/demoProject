@@ -29,11 +29,11 @@
 }
 
 .App-outerContainer {
-  height: 1000px;
+  height: 900px;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: lightblue;
+  background-color: #E6E6FA;
 }
 
 @keyframes App-logo-spin {
