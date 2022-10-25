@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { CustomButton } from "../Button/CustomButton";
 import { Card } from "../Card/Card";
 import "./OnboardingForm.css";
-import check from "C:/Users/Robin.Raj/Desktop/workingSection/demoProject/src/Assets/Images/check.PNG";
+import check from "../../Assets/Images/check.PNG";
 import { CustomTextField } from "../TextField/CustomTextField";
 
 export const OnboardingForm = (props) => {

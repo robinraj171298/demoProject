@@ -1,7 +1,7 @@
 import React from "react";
 import "./Card.css";
-import user from "C:/Users/Robin.Raj/Desktop/workingSection/demoProject/src/Assets/Images/user.png";
-import group from "C:/Users/Robin.Raj/Desktop/workingSection/demoProject/src/Assets/Images/group.png";
+import user from "../../Assets/Images/user.png";
+import group from "../../Assets/Images/group.png";
 
 export const Card = ({ card, isActive, setUsage }) => {
   function handleCardSelect() {
