@@ -84,13 +84,6 @@ export const OnboardingForm = props => {
         };
   }
 
-    /** Form submit */
-// const handleFormSubmit = (e) => {
-//     e.preventDefault();
-//     if (tabNumber === 4) return;
-//     setTabNumber((tab) => tab + 1);
-//   }
-
 
     return (
       <div class="Onboarding">
