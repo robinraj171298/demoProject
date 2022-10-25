@@ -72,9 +72,15 @@ export const OnboardingForm = props => {
   /** onClick of Button in each tab */
     const handleClick = () => {
     setFormState({...user,...workSpace,...usage});
-        if (tabNumber !== 4) {
-            props.handleTabChange(tabNumber + 1);
-            setTabNumber((tab) => tab + 1);
+        if (
+          tabNumber !== 4 &&
+            ((user.fullName?.length > 0 &&
+            user.displayName?.length > 0) ||
+          (workSpace.workspaceName?.length > 0 &&
+            workSpace.workspaceURL?.length > 0))
+        ) {
+          props.handleTabChange(tabNumber + 1);
+          setTabNumber((tab) => tab + 1);
         };
   }
 
@@ -87,103 +93,128 @@ export const OnboardingForm = props => {
 
 
     return (
-    <div class="Onboarding">
-      { tabHeadings[tabNumber-1].main &&
-        <div class="tabHeader">
-          <span class="tabHeader__main">{tabHeadings[tabNumber-1].main}</span>
-          <span class="tabHeader__sub">{tabHeadings[tabNumber-1].sub}</span>
-        </div>
-      }
-
-      <div class="form_section">
-        { tabNumber === 1 &&
-                    <>
-        <div class="inputField">
-            <CustomTextField 
-              id="fullName"
-              label="Full Name"
-              placeholder='Steve Jobs'
-              value={user.fullName}
-                            onChange={(value) => { debugger; setUser({ ...user, 'fullName': value }) }}
-              minLength="2"
-              maxLength="25"
-                        />
-        </div>
-        <div class="inputField">
-            <CustomTextField
-              id="displayName"
-              label="Display Name"
-              placeholder='Steve'
-              value={user.displayName}
-              onChange={(value) => setUser({...user,'displayName': value})}
-              minLength="2"
-              maxLength="12"
-            />
-                    </div>
-                            <CustomButton text="Create Workspace" handleClick={handleClick} /> 
-
-         </>  
-        }
-
-        { tabNumber === 2 &&
-                    <>
-        <div class="inputField">
-           <CustomTextField
-              id="workspaceName"
-              label="Workspace Name"
-              placeholder='Eden'
-              value={workSpace.workspaceName}
-              onChange={(value) => setWorkSpace({ ...workSpace, 'workspaceName': value })}
-              minLength="2"
-              maxLength="25"
-            />
-        </div>
-        <div class="inputField">
-           <CustomTextField
-              id="workspaceURL"
-              label="Workspace URL"
-              placeholder='Example'
-              value={workSpace.workspaceURL}
-              onChange={(value) => setWorkSpace({ ...workSpace, 'workspaceURL': value })}
-              minLength="2"
-              maxLength="20"
-            />
-        </div>
-        
-            
-            <CustomButton text="Create Workspace" handleClick={handleClick} />
-         </>
-        }
-
-        { tabNumber === 3 &&
-          <div class="tabThree">
-            <div class="cardsContainer">
-              {usageCards.map((card) => {
-                return <Card key={card.id} isActive={card.id === usage.usage} card={card} setUsage={setUsage} /> //handleCardSelect={handleCardSelect}
-              })}
-            </div>
-            <CustomButton text="Create Workspace" handleClick={handleClick} />
-          </div>
-        }
-        
-        { tabNumber === 4 &&
-          <div class="tabFour">
-            <div class="tabFour__img">
-              <img src={check} alt="check" />
-            </div>
-            <span style={{ fontSize: '2rem', marginBottom: '1rem', 
-                  fontWeight: '600', color: 'var(--color-primary-text-dark)'}}>
-                  Congratulations, {formState.displayName}!
+      <div class="Onboarding">
+        {tabHeadings[tabNumber - 1].main && (
+          <div class="tabHeader">
+            <span class="tabHeader__main">
+              {tabHeadings[tabNumber - 1].main}
             </span>
-            <span style={{ fontSize: '.9rem', marginBottom:'2rem', 
-                  color: 'var(--color-primary-text-medium)' }}>
-                  You have completed onboarding, you can start using the Eden!
-            </span>
-            <CustomButton text="Launch Eden" handleClick={handleClick} />
+            <span class="tabHeader__sub">{tabHeadings[tabNumber - 1].sub}</span>
           </div>
-        }
+        )}
+
+        <div class="form_section">
+          {tabNumber === 1 && (
+            <>
+              <div class="inputField">
+                <CustomTextField
+                  id="fullName"
+                  label="Full Name"
+                  placeholder="Steve Jobs"
+                  value={user.fullName}
+                  onChange={(value) => {
+                    debugger;
+                    setUser({ ...user, fullName: value });
+                  }}
+                  minLength="2"
+                  maxLength="25"
+                  error={true}
+                />
+              </div>
+              <div class="inputField">
+                <CustomTextField
+                  id="displayName"
+                  label="Display Name"
+                  placeholder="Steve"
+                  value={user.displayName}
+                  onChange={(value) => setUser({ ...user, displayName: value })}
+                  minLength="2"
+                  maxLength="12"
+                />
+              </div>
+              <CustomButton text="Create Workspace" handleClick={handleClick} />
+            </>
+          )}
+
+          {tabNumber === 2 && (
+            <>
+              <div class="inputField">
+                <CustomTextField
+                  id="workspaceName"
+                  label="Workspace Name"
+                  placeholder="Eden"
+                  value={workSpace.workspaceName}
+                  onChange={(value) =>
+                    setWorkSpace({ ...workSpace, workspaceName: value })
+                  }
+                  minLength="2"
+                  maxLength="25"
+                />
+              </div>
+              <div class="inputField">
+                <CustomTextField
+                  id="workspaceURL"
+                  label="Workspace URL"
+                  placeholder="Example"
+                  value={workSpace.workspaceURL}
+                  onChange={(value) =>
+                    setWorkSpace({ ...workSpace, workspaceURL: value })
+                  }
+                  minLength="2"
+                  maxLength="20"
+                />
+              </div>
+
+              <CustomButton text="Create Workspace" handleClick={handleClick} />
+            </>
+          )}
+
+          {tabNumber === 3 && (
+            <div class="tabThree">
+              <div class="cardsContainer">
+                {usageCards.map((card) => {
+                  return (
+                    <Card
+                      key={card.id}
+                      isActive={card.id === usage.usage}
+                      card={card}
+                      setUsage={setUsage}
+                    />
+                  ); //handleCardSelect={handleCardSelect}
+                })}
+              </div>
+              <CustomButton text="Create Workspace" handleClick={handleClick} />
+            </div>
+          )}
+
+          {tabNumber === 4 && (
+            <div class="tabFour">
+              <div class="tabFour__img">
+                <img src={check} alt="check" />
+              </div>
+              <span
+                style={{
+                  fontSize: "2rem",
+                  marginBottom: "1rem",
+                  fontWeight: "600",
+                  color: "var(--color-primary-text-dark)",
+                }}
+              >
+                Congratulations, {formState.displayName}!
+              </span>
+              <span
+                style={{
+                  fontSize: ".9rem",
+                  marginBottom: "2rem",
+                  color: "var(--color-primary-text-medium)",
+                }}
+              >
+                You have completed onboarding, you can start using the Eden!
+              </span>
+              <CustomButton text="Launch Eden" handleClick={handleClick} />
+            </div>
+          )}
+        </div>
       </div>
-
-    </div>
-  )
+    );
 }

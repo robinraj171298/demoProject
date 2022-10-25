@@ -23,12 +23,6 @@ export const OnboardingSceen = () => {
                 <Grid item>
                     <HorizontalLinearStepper currentTab={currentTab} />
                 </Grid>
-                {/* <Grid item>
-                    <CustomTextField></CustomTextField>
-                </Grid>
-                <Grid item>
-                    <CustomTextField></CustomTextField>
-                </Grid> */}
                 <Grid item>
                     <OnboardingForm handleTabChange={handleTabChange} />
                 </Grid>
