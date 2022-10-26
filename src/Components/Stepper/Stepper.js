@@ -27,6 +27,7 @@ export const HorizontalLinearStepper = (props) => {
                   "&.MuiStepIcon-root": {
                     color: "#A9A9A9",
                     "&.Mui-active": { color: "#6353dd" },
+                    "&.Mui-completed": { color: "#6353dd" },
                   },
                 },
               }}
